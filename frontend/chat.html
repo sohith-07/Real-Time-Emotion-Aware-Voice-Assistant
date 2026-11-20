@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Text Chat · EmotiVoice</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+  <link rel="stylesheet" href="/static/css/professional.css" />
+</head>
+<body>
+  <div class="app-shell" id="shell"></div>
+  <main class="main">
+    <div class="topbar">
+      <button class="menu-btn" id="menuBtn">☰</button>
+      <div class="page-head" style="margin:0">
+        <div>
+          <div class="page-title">Text Chat</div>
+          <div class="page-sub">Type and the assistant replies with emotion-aware responses.</div>
+        </div>
+      </div>
+      <button class="theme-toggle" onclick="App.toggleTheme()" title="Toggle theme">☀</button>
+    </div>
+
+    <div class="chat-wrap">
+      <aside class="conv-list">
+        <h4>Conversations</h4>
+        <button id="newChatBtn" class="btn btn-primary" style="width:100%; margin-bottom:10px;">+ New chat</button>
+        <div id="convList"></div>
+        <button id="clearAllBtn" class="btn btn-ghost" style="width:100%; margin-top:10px;">Clear all</button>
+      </aside>
+
+      <section class="chat-main">
+        <div id="messages" class="chat-messages">
+          <div style="color:var(--text-mute); text-align:center; padding:40px 0;">
+            Start a conversation by typing below.
+          </div>
+        </div>
+        <div class="chat-input">
+          <textarea id="msgInput" class="textarea" rows="1"
+            placeholder="Type a message... (Enter to send, Shift+Enter for new line)"></textarea>
+          <button id="sendBtn" class="btn btn-primary">Send</button>
+          <button id="speakLastBtn" class="btn" title="Speak the last assistant reply">🔊</button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="/static/js/common.js"></script>
+  <script>App.mountShell("chat");</script>
+  <script src="/static/js/chat.js"></script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Settings · EmotiVoice</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+  <link rel="stylesheet" href="/static/css/professional.css" />
+</head>
+<body>
+  <div class="app-shell" id="shell"></div>
+  <main class="main">
+    <div class="topbar">
+      <button class="menu-btn" id="menuBtn">☰</button>
+      <div class="page-head" style="margin:0">
+        <div>
+          <div class="page-title">Settings</div>
+          <div class="page-sub">Configure voice, speech, emotion detection and appearance.</div>
+        </div>
+      </div>
+      <button class="theme-toggle" onclick="App.toggleTheme()" title="Toggle theme">☀</button>
+    </div>
+
+    <div class="settings-grid">
+      <!-- Voice interaction -->
+      <div class="card">
+        <div class="card-title">Voice Interaction</div>
+
+        <div class="setting-row">
+          <div>
+            <div>Automatic speech playback</div>
+            <div class="desc">Speak assistant replies aloud automatically.</div>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="set_auto_play_tts" />
+            <span class="track"></span>
+          </label>
+        </div>
+
+        <div class="setting-row">
+          <div>
+            <div>Microphone enabled</div>
+            <div class="desc">Allow voice input on the Voice page.</div>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="set_microphone_enabled" />
+            <span class="track"></span>
+          </label>
+        </div>
+
+        <div class="setting-row">
+          <div>
+            <div>Interrupt while speaking</div>
+            <div class="desc">Press the mic button to stop the assistant mid-sentence.</div>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="set_interrupt_enabled" />
+            <span class="track"></span>
+          </label>
+        </div>
+
+        <div class="setting-row">
+          <div>
+            <div>Sound-wave visualizer</div>
+            <div class="desc">Show animated bars while listening.</div>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="set_sound_wave_visualizer" />
+            <span class="track"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Speech / voice -->
+      <div class="card">
+        <div class="card-title">Speech &amp; Voice</div>
+
+        <div class="field">
+          <label for="set_voice_name">Voice</label>
+          <select id="set_voice_name" class="select">
+            <option value="">Default (browser)</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="set_speech_rate">Speech rate: <span id="rateVal">1.0</span>×</label>
+          <input type="range" id="set_speech_rate" min="0.5" max="2" step="0.1" value="1.0" class="input" />
+        </div>
+
+        <div class="field">
+          <label for="set_speech_pitch">Speech pitch: <span id="pitchVal">1.0</span></label>
+          <input type="range" id="set_speech_pitch" min="0.5" max="2" step="0.1" value="1.0" class="input" />
+        </div>
+
+        <div class="field">
+          <label for="set_language">Recognition language</label>
+          <select id="set_language" class="select">
+            <option value="en-US">English (US)</option>
+            <option value="en-GB">English (UK)</option>
+            <option value="en-IN">English (India)</option>
+            <option value="hi-IN">Hindi</option>
+            <option value="es-ES">Spanish</option>
+            <option value="fr-FR">French</option>
+            <option value="de-DE">German</option>
+            <option value="zh-CN">Chinese (Mandarin)</option>
+            <option value="ja-JP">Japanese</option>
+          </select>
+        </div>
+
+        <button id="testVoiceBtn" class="btn">🔊 Test voice</button>
+      </div>
+
+      <!-- Emotion + theme + API -->
+      <div class="card">
+        <div class="card-title">Emotion, Theme &amp; API</div>
+
+        <div class="setting-row">
+          <div>
+            <div>Emotion detection</div>
+            <div class="desc">Analyse each user message for emotion.</div>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="set_emotion_detection_enabled" />
+            <span class="track"></span>
+          </label>
+        </div>
+
+        <div class="field">
+          <label for="set_theme">Theme</label>
+          <select id="set_theme" class="select">
+            <option value="dark">Dark</option>
+            <option value="light">Light</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="set_openai_key">OpenAI API key (optional)</label>
+          <input type="password" id="set_openai_key" class="input" placeholder="sk-..." autocomplete="off" />
+          <div class="desc" style="margin-top:4px">
+            Leave empty to use the built-in emotion-aware rule engine.
+            The key is stored in your backend's .env, not in the database.
+          </div>
+        </div>
+
+        <div style="display:flex; gap:10px; margin-top:10px;">
+          <button id="saveBtn" class="btn btn-primary">Save settings</button>
+          <button id="resetBtn" class="btn btn-ghost">Reset to defaults</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="disclaimer">
+      Settings are stored in the backend's SQLite database. The OpenAI key, if provided here,
+      is written to <code>backend/.env</code> only when you click Save — but for production use,
+      edit <code>.env</code> directly and never commit it to source control.
+    </div>
+  </main>
+
+  <script src="/static/js/common.js"></script>
+  <script>App.mountShell("settings");</script>
+  <script src="/static/js/settings.js"></script>
+</body>
+</html>

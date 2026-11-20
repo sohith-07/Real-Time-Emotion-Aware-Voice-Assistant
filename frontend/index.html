@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EmotiVoice · Emotion-Aware Voice Assistant</title>
+  <meta name="description" content="A real-time voice assistant that listens, detects your emotion, and adapts its responses to your mood." />
+  <link rel="stylesheet" href="/static/css/style.css" />
+  <link rel="stylesheet" href="/static/css/professional.css" />
+</head>
+<body>
+  <div class="app-shell" id="shell"></div>
+  <main class="main">
+    <div class="topbar">
+      <button class="menu-btn" id="menuBtn">☰</button>
+      <button class="theme-toggle" onclick="App.toggleTheme()" title="Toggle theme">☀</button>
+    </div>
+
+    <section class="hero">
+      <h1>EmotiVoice</h1>
+      <p>A real-time voice assistant that listens to you, understands how you're feeling,
+         and tailors every reply to your mood — powered by a HuggingFace emotion model
+         and the Web Speech API.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="voice.html">🎙 Start Voice Chat</a>
+        <a class="btn" href="chat.html">💬 Text Chat</a>
+        <a class="btn btn-ghost" href="analytics.html">📊 Analytics</a>
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="feature">
+        <div class="ico">🎙</div>
+        <h3>Real-Time Voice</h3>
+        <p>Speak naturally — your speech is transcribed live and the assistant replies out loud, with stop and interrupt controls.</p>
+      </div>
+      <div class="feature">
+        <div class="ico">❤</div>
+        <h3>Emotion Detection</h3>
+        <p>Detects 7 emotions (joy, sadness, anger, fear, surprise, disgust, neutral) with confidence scores — a real ML model, not keywords.</p>
+      </div>
+      <div class="feature">
+        <div class="ico">🧠</div>
+        <h3>Emotion-Aware Replies</h3>
+        <p>The assistant adapts its tone — empathetic when you're sad, calm when angry, reassuring when fearful — and remembers context.</p>
+      </div>
+      <div class="feature">
+        <div class="ico">🔊</div>
+        <h3>Natural Speech</h3>
+        <p>Responses are spoken with the Web Speech API. Pick a voice, adjust speed, and toggle autoplay.</p>
+      </div>
+      <div class="feature">
+        <div class="ico">📊</div>
+        <h3>Analytics Dashboard</h3>
+        <p>See total conversations, emotion distribution, trends, and recent activity in an interactive dashboard.</p>
+      </div>
+      <div class="feature">
+        <div class="ico">⚙</div>
+        <h3>Settings &amp; Themes</h3>
+        <p>Configure microphone, voice, speech rate, emotion detection, theme and an optional OpenAI key — all from one panel.</p>
+      </div>
+    </section>
+
+    <div class="disclaimer">
+      Emotion predictions are estimates produced by a machine-learning model and are
+      <strong>not definitive psychological assessments</strong>. They are intended for
+      demonstration and conversational adaptation only.
+    </div>
+  </main>
+
+  <script src="/static/js/common.js"></script>
+  <script>App.mountShell("index");</script>
+</body>
+</html>

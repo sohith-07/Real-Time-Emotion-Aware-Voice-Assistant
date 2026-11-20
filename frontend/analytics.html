@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Analytics · EmotiVoice</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+  <link rel="stylesheet" href="/static/css/professional.css" />
+</head>
+<body>
+  <div class="app-shell" id="shell"></div>
+  <main class="main">
+    <div class="topbar">
+      <button class="menu-btn" id="menuBtn">☰</button>
+      <div class="page-head" style="margin:0">
+        <div>
+          <div class="page-title">Analytics Dashboard</div>
+          <div class="page-sub">Conversation volume, emotion distribution, and recent activity.</div>
+        </div>
+      </div>
+      <button class="theme-toggle" onclick="App.toggleTheme()" title="Toggle theme">☀</button>
+      <button id="refreshBtn" class="btn">↻ Refresh</button>
+    </div>
+
+    <!-- KPI row -->
+    <div class="kpi-row">
+      <div class="card stat">
+        <div class="stat-ico">💬</div>
+        <div class="stat-value" id="kpiConv">0</div>
+        <div class="stat-label">Conversations</div>
+      </div>
+      <div class="card stat">
+        <div class="stat-ico">✉</div>
+        <div class="stat-value" id="kpiMsg">0</div>
+        <div class="stat-label">Total Messages</div>
+      </div>
+      <div class="card stat">
+        <div class="stat-ico">👤</div>
+        <div class="stat-value" id="kpiUser">0</div>
+        <div class="stat-label">User Messages</div>
+      </div>
+      <div class="card stat">
+        <div class="stat-ico">🤖</div>
+        <div class="stat-value" id="kpiAssist">0</div>
+        <div class="stat-label">Assistant Messages</div>
+      </div>
+      <div class="card stat">
+        <div class="stat-ico">❤</div>
+        <div class="stat-value" id="kpiEmo" style="text-transform:capitalize">—</div>
+        <div class="stat-label">Most Frequent Emotion</div>
+      </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="grid grid-2" style="margin-bottom: var(--gap);">
+      <div class="card chart-card">
+        <div class="card-title">Emotion Distribution</div>
+        <canvas id="distChart"></canvas>
+      </div>
+      <div class="card chart-card">
+        <div class="card-title">Daily Message Volume (last 14 days)</div>
+        <canvas id="trendChart"></canvas>
+      </div>
+    </div>
+
+    <!-- Recent activity -->
+    <div class="grid grid-2">
+      <div class="card">
+        <div class="card-title">Recent Messages</div>
+        <div id="recentList" class="recent-list"></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Emotion Breakdown</div>
+        <div id="emoBreakdown"></div>
+      </div>
+    </div>
+
+    <div class="disclaimer">
+      Counts reflect conversations stored in this browser's backend (SQLite). Emotion counts
+      are derived from user messages only and are model estimates, not psychological assessments.
+    </div>
+  </main>
+
+  <script src="/static/js/common.js"></script>
+  <script>App.mountShell("analytics");</script>
+  <script src="/static/js/analytics.js"></script>
+</body>
+</html>

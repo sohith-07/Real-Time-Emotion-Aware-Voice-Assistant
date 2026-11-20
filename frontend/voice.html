@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Voice Assistant · EmotiVoice</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+  <link rel="stylesheet" href="/static/css/professional.css" />
+</head>
+<body>
+  <div class="app-shell" id="shell"></div>
+  <main class="main">
+    <div class="topbar">
+      <button class="menu-btn" id="menuBtn">☰</button>
+      <div class="page-head" style="margin:0">
+        <div>
+          <div class="page-title">Voice Assistant</div>
+          <div class="page-sub">Speak naturally — the assistant listens, detects your emotion, and replies out loud.</div>
+        </div>
+      </div>
+      <button class="theme-toggle" onclick="App.toggleTheme()" title="Toggle theme">☀</button>
+    </div>
+
+    <div class="voice-stage">
+      <!-- LEFT: microphone panel -->
+      <section class="mic-panel">
+        <button id="micBtn" class="mic-btn" title="Click to start/stop listening">🎙</button>
+        <div id="micStatus" class="mic-status">Click the microphone to start.</div>
+        <div id="wave" class="wave">
+          <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+          <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+          <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+          <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </div>
+        <div id="transcriptLive" class="mic-transcript"></div>
+
+        <div style="margin-top:18px; display:flex; gap:10px; flex-wrap:wrap; justify-content:center;">
+          <button id="stopSpeakBtn" class="btn" disabled>⏹ Stop speaking</button>
+          <button id="clearBtn" class="btn btn-ghost">🗑 Clear</button>
+          <label class="toggle" title="Speak replies automatically">
+            <input type="checkbox" id="autoPlayChk" checked />
+            <span class="track"></span><span>Auto-play</span>
+          </label>
+        </div>
+        <div class="disclaimer" id="browserWarn" style="display:none">
+          ⚠ Your browser may not support the Web Speech API. Use Chrome or Edge for the best experience.
+        </div>
+      </section>
+
+      <!-- RIGHT: transcript + emotion -->
+      <section class="card" style="display:flex; flex-direction:column;">
+        <div class="card-title">Live Emotion</div>
+        <div id="emoPanel" style="display:flex; flex-direction:column; gap:10px; margin-bottom:14px;">
+          <div id="emoCurrent" style="font-size:14px; color:var(--text-dim)">No emotion detected yet.</div>
+          <div id="emoBars"></div>
+        </div>
+
+        <div class="card-title">Conversation</div>
+        <div id="transcript" class="transcript" style="flex:1; min-height:280px;">
+          <div style="color:var(--text-mute); text-align:center; padding:30px 0;">
+            Start speaking and your conversation will appear here.
+          </div>
+        </div>
+        <div class="disclaimer">
+          Emotion predictions are estimates from an ML model and not psychological assessments.
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="/static/js/common.js"></script>
+  <script>App.mountShell("voice");</script>
+  <script src="/static/js/voice.js"></script>
+</body>
+</html>
